@@ -2,8 +2,13 @@
     #include <stdio.h>
     int main()
     {
-       printf("Welcome to Little Cave Adventure.\n");
-       printf("It is very dark in here.\n");
-       printf("\nBye!\n");
+       printf("Would you like to kill yourself.\n");
+       printf("\v 1. Yes\n");
+       printf("\v 2. No\n");
+       int response;
+       scanf("%d", &response);
+       if (response == 1) {
+          printf("GAME OVER\n");
+       }     
        return 0;
     }
