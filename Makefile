@@ -4,7 +4,7 @@ CFLAGS = -Wall -g
 
 LD = gcc
 
-LDFLAGS = 
+LDFLAGS = -lncurses
 
 mygame: main.o text_actions.o
 	$(LD) $(LDFLAGS) -o mygame main.o text_actions.o
