@@ -6,7 +6,7 @@ void type_text(char* text) {
     for (int i = 0; text[i] != '\0'; i++) {
         addch(text[i]); 
         refresh(); 
-        napms(30); 
+        napms(50); 
    } 
 }
 

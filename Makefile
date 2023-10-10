@@ -6,13 +6,13 @@ LD = gcc
 
 LDFLAGS = -lncurses
 
-mygame: main.o text_actions.o
-	$(LD) $(LDFLAGS) -o mygame main.o text_actions.o
+mygame: main.o TextActions.o
+	$(LD) $(LDFLAGS) -o mygame main.o TextActions.o
 
 main.o: main.c
 	$(CC) $(CFLAGS) -c -o main.o main.c
 
-text_actions.o: text_actions.c
-	$(CC) $(CFLAGS) -c -o text_actions.o text_actions.c
+text_actions.o: TextActions.c
+	$(CC) $(CFLAGS) -c -o TextActions.o TextActions.c
 
 
