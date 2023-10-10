@@ -15,4 +15,5 @@ main.o: main.c
 TextActions.o: TextActions.c
 	$(CC) $(CFLAGS) -c -o TextActions.o TextActions.c
 
-
+clean:
+	rm -f *.o mygame
