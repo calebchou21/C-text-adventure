@@ -12,7 +12,7 @@ mygame: main.o TextActions.o
 main.o: main.c
 	$(CC) $(CFLAGS) -c -o main.o main.c
 
-text_actions.o: TextActions.c
+TextActions.o: TextActions.c
 	$(CC) $(CFLAGS) -c -o TextActions.o TextActions.c
 
 
