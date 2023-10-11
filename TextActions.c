@@ -27,7 +27,6 @@ void type_text(char* text) {
             move(getcury(stdscr) + 1, 25);
             cols = 25;
         }
-
         addch(text[i]);
         cols++;
         refresh(); 
