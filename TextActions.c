@@ -33,6 +33,9 @@ void type_text(char* text) {
             move(getcury(stdscr) + 1, 25);
             cols = 25;
         }
+	if (cols == 25 && text[i] == ' ') {
+	    continue;
+	}
             addch(text[i]);
             cols++;
             refresh(); 
