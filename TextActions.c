@@ -24,7 +24,7 @@ void type_text(char* text) {
     printf("%d\n", max_x);
     move(5, 25);
     */
-    move(getcury(stdscr) + i, 25);
+    move(getcury(stdscr) + 1, 25);
     for (int i = 0; text[i] != '\0'; i++) {
         if (cols >= max_x - 30) {
             addch('\n');
