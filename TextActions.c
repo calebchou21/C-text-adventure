@@ -27,6 +27,8 @@ void type_text(char* text) {
     move(getcury(stdscr) + 1, 25);
     for (int i = 0; text[i] != '\0'; i++) {
         if (cols >= max_x - 30) {
+            if (text[i - 1] != ' ')
+                addch('-');
             addch('\n');
             move(getcury(stdscr) + 1, 25);
             cols = 25;
