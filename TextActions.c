@@ -14,11 +14,26 @@ void screen_cleanup(void) {
     endwin();
 }
 
+
 void type_text(char* text) {
+    int max_y, max_x;
+    int cols = 25;
+    getmaxyx(stdscr, max_y, max_x);
+    move(5, 25);
+
     for (int i = 0; text[i] != '\0'; i++) {
-        addch(text[i]); 
+        if (cols >= max_x - 25) {
+            addch('\n');
+            move(getcury(stdscr) + 1, 25);
+            cols = 25;
+        }
+
+        addch(text[i]);
+        cols++;
         refresh(); 
-        napms(50); 
+        napms(15);
     }
     getch();
+    clear();
+    refresh();
 }
