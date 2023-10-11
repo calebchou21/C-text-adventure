@@ -6,7 +6,8 @@ void screen_setup(void) {
     initscr();
     cbreak();
     noecho();
-    curs_set(FALSE); 
+    curs_set(FALSE);
+    move(5, 25);
 }
 
 void screen_cleanup(void) {
@@ -21,7 +22,6 @@ void type_text(char* text) {
     getmaxyx(stdscr, max_y, max_x);
     printf("%d\n", max_y);
     printf("%d\n", max_x);
-    move(5, 25);
 
     for (int i = 0; text[i] != '\0'; i++) {
         if (cols >= max_x - 30) {
