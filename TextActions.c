@@ -1,5 +1,3 @@
-#include <ncurses.h>
-#include <unistd.h>
 #include "TextActions.h"
 
 void screen_setup(void) {
