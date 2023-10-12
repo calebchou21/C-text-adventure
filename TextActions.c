@@ -5,7 +5,6 @@ void screen_setup(void) {
     cbreak();
     noecho();
     curs_set(FALSE);
-    scrollok(stdscr, TRUE);
 }
 
 void screen_cleanup(void) {
@@ -16,10 +15,8 @@ void screen_cleanup(void) {
 
 void type_text(char* text) {
     int max_y, max_x;
-    int cur_y;
     int cols = 25;
     getmaxyx(stdscr, max_y, max_x); 
-    
     move(5, 25);
     for (int i = 0; text[i] != '\0'; i++) {
         if ((cols == (max_x-30-25) && text[i] == ' ') ||
