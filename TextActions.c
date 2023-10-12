@@ -7,6 +7,7 @@ void screen_setup(void) {
     cbreak();
     noecho();
     curs_set(FALSE);
+    scrollok(stdscr, TRUE);
 }
 
 void screen_cleanup(void) {
@@ -19,12 +20,8 @@ void type_text(char* text) {
     int max_y, max_x;
     int cols = 25;
     getmaxyx(stdscr, max_y, max_x); 
-    /*
-    printf("%d\n", max_y);
-    printf("%d\n", max_x);
+    
     move(5, 25);
-    */
-    move(getcury(stdscr) + 1, 25);
     for (int i = 0; text[i] != '\0'; i++) {
         if (cols >= max_x - 30) {
             if (text[i - 1] != ' ')
@@ -42,4 +39,6 @@ void type_text(char* text) {
             napms(15);
     }
     getch();
+    clear();
+    refresh();
 }
