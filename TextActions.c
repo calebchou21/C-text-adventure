@@ -16,6 +16,7 @@ void screen_cleanup(void) {
 
 void type_text(char* text) {
     int max_y, max_x;
+    int cur_y;
     int cols = 25;
     getmaxyx(stdscr, max_y, max_x); 
     
