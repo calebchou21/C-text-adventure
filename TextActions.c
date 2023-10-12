@@ -21,15 +21,15 @@ void type_text(char* text) {
     
     move(5, 25);
     for (int i = 0; text[i] != '\0'; i++) {
+        if ((cols == (max_x-30-25) && text[i] == ' ') ||
+            (cols == (max_x-30-25) && text[i] == ',') ||
+            (cols == (max_x-30-25) && text[i] == '.')) {continue;}
         if (cols >= max_x - 30) {
             if (text[i - 1] != ' ')
                 addch('-');
             addch('\n');
             move(getcury(stdscr) + 1, 25);
             cols = 25;
-        }
-        if (cols == 25 && text[i] == ' ') {
-            continue;
         }
             addch(text[i]);
             cols++;
