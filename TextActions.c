@@ -19,9 +19,7 @@ void type_text(char* text) {
     getmaxyx(stdscr, max_y, max_x); 
     move(5, 25);
     for (int i = 0; text[i] != '\0'; i++) {
-        if ((cols == (max_x-30-25) && text[i] == ' ') ||
-            (cols == (max_x-30-25) && text[i] == ',') ||
-            (cols == (max_x-30-25) && text[i] == '.')) {continue;}
+        if (cols == 25 && text[i] == ' ') {continue;}
         if (cols >= max_x - 30) {
             if (text[i - 1] != ' ')
                 addch('-');
@@ -40,5 +38,5 @@ void type_text(char* text) {
 }
 
 void type_options(char* options[]){
-    
+
 }
