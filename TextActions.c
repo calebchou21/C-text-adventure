@@ -40,3 +40,7 @@ void type_text(char* text) {
     clear();
     refresh();
 }
+
+void type_options(char* options[]){
+    
+}
