@@ -20,16 +20,13 @@ void type_text(char* text) {
     int right_margin = max_x - left_margin - 5;
     int cols = left_margin;
 
-    move(5, left_margin + 1);
+    move(5, left_margin);
 
     for (int i = 0; text[i] != '\0'; i++) {
-        if (cols == (left_margin) && text[i] == ' ') {
-                while(text[i] == ' '){
-                    i++;
-                } 
-        }
         if (cols >= right_margin && cols <= (right_margin + 5)) {
             if (text[i] == ' ') {
+                while (text[i] == ' ')
+                    ++i;
                 addch('\n');
                 move(getcury(stdscr) + 1, left_margin);
                 cols = left_margin;
