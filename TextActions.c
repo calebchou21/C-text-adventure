@@ -53,12 +53,14 @@ void type_text(char* text) {
 
 void type_options(char** options, int num_options){
     int max_y, max_x;
-    int rows = 5;
     getmaxyx(stdscr, max_y, max_x);
+    int rows = 5;
+    int left_margin = max_x / 9;
+
     max_y = 0; //Temporary, gets rid of warning
     
     for (int i = 0; i < num_options; i++) {
-        move(rows, 25);
+        move(rows, left_margin);
         add_option_nums(i, true);
 
         for (int j = 0; options[i][j] != '\0'; j++) {
@@ -69,12 +71,15 @@ void type_options(char** options, int num_options){
         napms(350);
         rows += 1;
     }
-    
+
     get_selected_option(options, num_options);
 }
 
 int get_selected_option(char** options, int num_options){
     int selected = 0;
+    int max_y, max_x;
+    getmaxyx(stdscr, max_y, max_x);
+    int left_margin = max_x / 9;
     keypad(stdscr, TRUE);
     while(1){
         clear();
@@ -83,7 +88,7 @@ int get_selected_option(char** options, int num_options){
             if (i == selected) {
                 attron(A_REVERSE); 
             }
-            move(rows, 25);
+            move(rows, left_margin);
             add_option_nums(i, false);
             addstr(options[i]);
             if (i == selected) {
