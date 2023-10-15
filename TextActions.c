@@ -23,14 +23,15 @@ void type_text(char* text) {
     move(5, left_margin);
 
     for (int i = 0; text[i] != '\0'; i++) {
-        if (cols == 25 && text[i] == ' ') {continue;}
-        if (cols >= right_margin && cols <= (right_margin + 5)) {
-            if (text[i] == ' ') {
+        if (cols == (left_margin) && text[i] == ' ') {
                 while(text[i] == ' '){
                     i++;
-                }
+                } 
+        }
+        if (cols >= right_margin && cols <= (right_margin + 5)) {
+            if (text[i] == ' ') {
                 addch('\n');
-                move(getcury(stdscr) + 1, left_margin);
+                move(getcury(stdscr) + 1, left_margin - 1);
                 cols = left_margin;
             }
         } else if (cols > (right_margin + 5)){
