@@ -23,7 +23,6 @@ void type_text(char* text, bool clear_screen, bool refresh) {
     move(5, left_margin);
 
     for (int i = 0; text[i] != '\0'; i++) {
-        if (cols == left_margin && text[i] == ' ') {continue;}
         if (cols >= right_margin && cols <= (right_margin + 5)) {
             if (text[i] == ' ') {
                 while (text[i] == ' ')
@@ -31,14 +30,22 @@ void type_text(char* text, bool clear_screen, bool refresh) {
                 addch('\n');
                 move(getcury(stdscr) + 1, left_margin);
                 cols = left_margin - 1;
+                while (text[i] == ' ')
+                    i++;
             }
         } else if (cols > (right_margin + 5)){
+            while(text[i] == '\"' || text[i] == '\'' || text[i] == '.' || text[i] == ',' || text[i] == '?') {
+                addch(text[i]);
+                i++;
+            }
             if (text[i] != ' '){
                 addch('-');
             }
             addch('\n');
             move(getcury(stdscr) + 1, left_margin);
             cols = left_margin - 1;
+            while (text[i] == ' ')
+                i++;
         }
         addch(text[i]);
         cols++;
