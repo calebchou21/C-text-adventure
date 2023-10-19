@@ -13,7 +13,7 @@ void screen_cleanup(void) {
 }
 
 
-void type_text(char* text) {
+void type_text(char* text, bool clear_screen) {
     int max_y, max_x;
     getmaxyx(stdscr, max_y, max_x); 
     int left_margin = max_x / 9;
@@ -45,7 +45,7 @@ void type_text(char* text) {
         napms(15);
     }
     getch();
-    clear();
+    if (clear_screen) {clear();}
     refresh();
 }
 
@@ -54,11 +54,11 @@ void type_options(char** options, int num_options){
     getmaxyx(stdscr, max_y, max_x);
     int rows = 5;
     int left_margin = max_x / 9;
-
+    int cur_cursor_y = getcury(stdscr);
     max_y = 0; //Temporary, gets rid of warning
     
     for (int i = 0; i < num_options; i++) {
-        move(rows, left_margin);
+        move(cur_cursor_y+1, left_margin);
         add_option_nums(i, true);
 
         for (int j = 0; options[i][j] != '\0'; j++) {
