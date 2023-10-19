@@ -92,11 +92,11 @@ int get_selected_option(char** options, char* text, int num_options){
     getmaxyx(stdscr, max_y, max_x);
     int left_margin = max_x / 9;
     keypad(stdscr, TRUE);
-    int cursor_y = getcury(stdscr);
-    type_text(text, false, false);
+    
     while(1){
         clear();
-        
+        type_text(text, false, false);
+        int cursor_y = getcury(stdscr);
         int rows = 5;
         for (int i = 0; i < num_options; i++) {
             if (i == selected) {
@@ -126,7 +126,7 @@ int get_selected_option(char** options, char* text, int num_options){
         }
         refresh();
     }
-    return selected;
+    return -1;
     
 }
 
