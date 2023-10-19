@@ -43,24 +43,27 @@ void type_text(char* text, bool clear_screen, bool refresh) {
         addch(text[i]);
         cols++;
         refresh(); 
-        if (refresh == false)
+        if (refresh == true)
             napms(15);
     }
     getch();
-    if (clear_screen) {clear();}
-    refresh();
+    if (clear_screen) {
+        clear();
+        refresh();
+    }
+    
 }
+
 
 void type_options(char** options, int num_options){
     int max_y, max_x;
     getmaxyx(stdscr, max_y, max_x);
     int rows = 5;
     int left_margin = max_x / 9;
-    int cur_cursor_y = getcury(stdscr);
-    max_y = 0; //Temporary, gets rid of warning
+    int cursor_y = getcury(stdscr);
     
     for (int i = 0; i < num_options; i++) {
-        move(cur_cursor_y+1, left_margin);
+        move(cursor_y+1, left_margin);
         add_option_nums(i, true);
 
         for (int j = 0; options[i][j] != '\0'; j++) {
@@ -70,31 +73,36 @@ void type_options(char** options, int num_options){
         }
         napms(350);
         rows += 1;
+        cursor_y += 1;
     }
-
-    get_selected_option(options, num_options);
+    char* text = "This is a second test case!\n";
+    get_selected_option(options, text, num_options);
 }
 
-int get_selected_option(char** options, int num_options){
+int get_selected_option(char** options, char* text, int num_options){
     int selected = 0;
     int max_y, max_x;
     getmaxyx(stdscr, max_y, max_x);
     int left_margin = max_x / 9;
     keypad(stdscr, TRUE);
+    int cursor_y = getcury(stdscr);
+    type_text(text, false, false);
     while(1){
         clear();
+        
         int rows = 5;
         for (int i = 0; i < num_options; i++) {
             if (i == selected) {
                 attron(A_REVERSE); 
             }
-            move(rows, left_margin);
+            move(cursor_y+1, left_margin);
             add_option_nums(i, false);
             addstr(options[i]);
             if (i == selected) {
                 attroff(A_REVERSE);
             }
             rows++;
+            cursor_y += 1;
         }
 
         int ch = getch();
@@ -111,7 +119,7 @@ int get_selected_option(char** options, int num_options){
         }
         refresh();
     }
-    return 0;
+    return selected;
     
 }
 
