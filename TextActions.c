@@ -13,7 +13,7 @@ void screen_cleanup(void) {
 }
 
 
-void type_text(char* text, bool clear_screen) {
+void type_text(char* text, bool clear_screen, bool refresh) {
     int max_y, max_x;
     getmaxyx(stdscr, max_y, max_x); 
     int left_margin = max_x / 9;
@@ -23,13 +23,14 @@ void type_text(char* text, bool clear_screen) {
     move(5, left_margin);
 
     for (int i = 0; text[i] != '\0'; i++) {
+        if (cols == left_margin && text[i] == ' ') {continue;}
         if (cols >= right_margin && cols <= (right_margin + 5)) {
             if (text[i] == ' ') {
                 while (text[i] == ' ')
                     ++i;
                 addch('\n');
                 move(getcury(stdscr) + 1, left_margin);
-                cols = left_margin;
+                cols = left_margin - 1;
             }
         } else if (cols > (right_margin + 5)){
             if (text[i] != ' '){
@@ -37,12 +38,13 @@ void type_text(char* text, bool clear_screen) {
             }
             addch('\n');
             move(getcury(stdscr) + 1, left_margin);
-            cols = left_margin;
+            cols = left_margin - 1;
         }
         addch(text[i]);
         cols++;
         refresh(); 
-        napms(15);
+        if (refresh == false)
+            napms(15);
     }
     getch();
     if (clear_screen) {clear();}
